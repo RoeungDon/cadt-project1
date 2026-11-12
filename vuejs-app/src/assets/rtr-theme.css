@@ -1,0 +1,84 @@
+/* RTR Room look: navy menu with coloured icons, soft cards, light page. Loaded after AdminLTE. */
+:root {
+  --rtr-navy: #0f1b3d;
+  --rtr-navy-2: #14213d;
+  --rtr-blue: #2563eb;
+  --rtr-page: #f4f6fb;
+  --rtr-ink: #14213d;
+  --rtr-muted: #6b7280;
+}
+
+body, .content-wrapper { background: var(--rtr-page); }
+.content-header h1 { font-weight: 700; color: var(--rtr-ink); }
+
+/* ---------- Cards on every page ---------- */
+.card { border: 0; border-radius: 14px; box-shadow: 0 4px 14px rgba(20, 33, 61, 0.07); }
+.card > .card-header:first-child { border-top-left-radius: 14px; border-top-right-radius: 14px; }
+.card > .card-footer:last-child { border-bottom-left-radius: 14px; border-bottom-right-radius: 14px; }
+.card-header { background: #fff; border-bottom: 1px solid #eef1f6; }
+.card-title { font-weight: 700; color: var(--rtr-ink); }
+.info-box { border-radius: 12px; box-shadow: 0 2px 8px rgba(20, 33, 61, 0.06); }
+.info-box .info-box-icon { border-radius: 10px; }
+.btn { border-radius: 8px; }
+.form-control, .custom-select { border-radius: 8px; }
+.table thead th { border-top: 0; color: #4b5563; font-size: 0.85rem; }
+
+/* ---------- Top bar ---------- */
+.rtr-navbar { border-bottom: 0; box-shadow: 0 2px 10px rgba(20, 33, 61, 0.06); min-height: 60px; }
+.rtr-page-title { font-weight: 700; color: var(--rtr-ink); font-size: 1.05rem; }
+.rtr-chip { display: inline-flex; align-items: center; background: #f4f6fb; border: 1px solid #e5e7eb; border-radius: 999px; padding: 5px 14px; font-size: 0.85rem; color: #374151; white-space: nowrap; }
+.rtr-icon-btn { position: relative; width: 40px; height: 40px; border-radius: 50%; color: #4b5563; }
+.rtr-icon-btn:hover { background: #f1f5f9; }
+.rtr-dot { position: absolute; top: 2px; right: 0; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: #ef4444; color: #fff; font-size: 0.68rem; font-weight: 700; line-height: 18px; }
+.rtr-user { display: flex; align-items: center; padding: 4px 8px; border-radius: 12px; }
+.rtr-user:hover { background: #f1f5f9; }
+.rtr-avatar { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; margin-right: 10px; border-radius: 50%; background: linear-gradient(135deg, #2563eb, #7c3aed); color: #fff; font-weight: 700; font-size: 0.85rem; }
+.rtr-user-name { font-weight: 700; color: var(--rtr-ink); font-size: 0.9rem; line-height: 1.1; }
+.rtr-user-role { font-size: 0.75rem; font-weight: 600; line-height: 1.3; }
+.rtr-user-role.role-owner { color: #16a34a; }
+.rtr-user-role.role-staff { color: #2563eb; }
+.rtr-user-role.role-viewer { color: #6b7280; }
+.rtr-menu { position: absolute; right: 0; top: calc(100% + 8px); z-index: 1050; min-width: 190px; padding: 6px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(20, 33, 61, 0.18); }
+.rtr-menu-wide { width: 300px; }
+.rtr-menu-head { padding: 8px 10px; font-weight: 700; color: var(--rtr-ink); border-bottom: 1px solid #f1f3f7; margin-bottom: 4px; }
+.rtr-menu-item { display: flex; align-items: center; padding: 8px 10px; border-radius: 8px; color: #374151; }
+.rtr-menu-item:hover { background: #f4f6fb; color: #111827; }
+.rtr-menu-icon { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin-right: 10px; border-radius: 8px; font-size: 0.8rem; }
+
+/* ---------- Menu on the left ---------- */
+.rtr-sidebar { background: linear-gradient(180deg, var(--rtr-navy) 0%, var(--rtr-navy-2) 55%, #0c1530 100%); box-shadow: 4px 0 20px rgba(15, 27, 61, 0.25) !important; }
+.rtr-sidebar .sidebar { display: flex; flex-direction: column; padding: 0 10px; }
+.rtr-brand { display: flex; align-items: center; height: 60px; padding: 10px 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important; }
+.rtr-logo { display: inline-flex !important; align-items: center; justify-content: center; float: none !important; flex: none; width: 36px !important; height: 36px !important; max-height: none !important; line-height: 1 !important; margin: 0 10px 0 2px !important; border-radius: 10px; background: linear-gradient(135deg, #fbbf24, #f97316); color: #fff; font-size: 1rem; box-shadow: 0 4px 10px rgba(249, 115, 22, 0.35); opacity: 1 !important; }
+.rtr-brand .brand-text { display: inline-flex; flex-direction: column; line-height: 1.15; color: #fff; }
+.rtr-brand .brand-text b { font-size: 1.1rem; letter-spacing: 0.3px; }
+.rtr-brand .brand-text small { color: #fbbf24; font-size: 0.72rem; }
+.rtr-sidebar .nav-header { padding: 14px 12px 6px !important; font-size: 0.68rem !important; letter-spacing: 1.2px; color: #6b7a99 !important; font-weight: 700; }
+.rtr-sidebar .nav-sidebar > .nav-item > .nav-link { margin-bottom: 3px; padding: 9px 12px; border-radius: 10px; color: #c7d2e8; }
+.rtr-sidebar .nav-sidebar > .nav-item > .nav-link:hover { background: rgba(255, 255, 255, 0.07); color: #fff; }
+.rtr-sidebar .nav-sidebar > .nav-item > .nav-link.active,
+.rtr-sidebar .nav-sidebar > .nav-item.menu-open > .nav-link.active { background: linear-gradient(90deg, #2563eb, #3b82f6) !important; color: #fff !important; box-shadow: 0 6px 16px rgba(37, 99, 235, 0.45) !important; }
+.rtr-sidebar .nav-sidebar > .nav-item.menu-open > .nav-link:not(.active) { background: rgba(255, 255, 255, 0.07); color: #fff; }
+.rtr-sidebar .nav-icon { font-size: 1rem !important; }
+.rtr-sidebar .nav-link p .badge { top: 50%; transform: translateY(-50%); font-size: 0.7rem; }
+.rtr-sidebar .nav-treeview > .nav-item > .nav-link { padding: 7px 12px; border-radius: 8px; color: #a5b1cc; }
+.rtr-sidebar .nav-treeview > .nav-item > .nav-link.active { background: rgba(255, 255, 255, 0.1) !important; color: #fff !important; }
+.rtr-sidebar .nav-treeview .nav-icon { font-size: 0.6rem !important; }
+
+/* The box at the bottom of the menu */
+.rtr-widget { margin: auto 2px 16px; padding: 14px; border-radius: 14px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(251, 191, 36, 0.25); color: #e5e7eb; }
+.rtr-widget-title { color: #fbbf24; font-weight: 700; margin-bottom: 8px; }
+.rtr-widget-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.8rem; padding: 3px 0; }
+.rtr-widget-row span { color: #a5b1cc; }
+.rtr-widget-row b { color: #fff; }
+.rtr-progress { height: 6px; margin-top: 8px; border-radius: 3px; background: rgba(255, 255, 255, 0.12); overflow: hidden; }
+.rtr-progress > div { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #22c55e, #4ade80); }
+.rtr-widget-foot { margin-top: 6px; font-size: 0.7rem; color: #8a96b3; }
+.layout-fixed .rtr-sidebar .sidebar { height: calc(100% - 60px); }
+.sidebar-collapse .rtr-sidebar:not(:hover) .rtr-widget,
+.sidebar-collapse .rtr-sidebar:not(:hover) .nav-header { display: none; }
+.sidebar-collapse .rtr-sidebar:not(:hover) .rtr-brand .brand-text { display: none; }
+
+/* Khmer letters: use a Khmer font that is on the computer (Mac, Windows or phone) */
+body { font-family: 'Source Sans Pro', 'Kantumruy Pro', 'Khmer OS Siemreap', 'Noto Sans Khmer', 'Khmer Sangam MN', 'Khmer UI', -apple-system, 'Segoe UI', Roboto, sans-serif; }
+html[lang='km'] .rtr-sidebar .nav-header { letter-spacing: 0; font-size: 0.75rem !important; }
