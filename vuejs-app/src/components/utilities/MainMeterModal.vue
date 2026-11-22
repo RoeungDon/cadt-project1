@@ -18,7 +18,7 @@
               </div>
               <div class="form-group col-6">
                 <label>{{ t('Account number') }}</label>
-                <input v-model.trim="form.account" type="text" maxlength="40" class="form-control" :placeholder="t('e.g. W801689 / 54917410')" />
+                <input v-model.trim="form.account" type="text" maxlength="40" class="form-control" :placeholder="t('e.g. DEMO-W-0001 / DEMO-EDC-0002')" />
               </div>
             </div>
             <div class="form-group">

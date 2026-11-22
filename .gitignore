@@ -1,5 +1,5 @@
 .DS_Store
 .vscode/
-laravel-app/database/database.sqlite*.code-workspace
-
+*.code-workspace
 /.env
+laravel-app/database/database.sqlite

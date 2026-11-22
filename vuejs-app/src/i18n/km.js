@@ -20,6 +20,9 @@ export default {
   'menu.tenants': 'អ្នកជួល',
   'menu.utilities': 'ទឹកភ្លើង',
   // Box at the bottom of the menu
+  'side.invoice': 'ចេញវិក្កយបត្រ',
+  'side.invoiceLate': '{day} · យឺត {days} ថ្ងៃ',
+  'side.invoicesMade': 'ចេញរួច {done} / {tenants} នាក់ សម្រាប់ {month}',
   'side.rate': 'អត្រាប្តូរប្រាក់',
   'side.reading': 'អានកុងទ័រ',
   'side.readingIn': '{day} · {days} ថ្ងៃទៀត',

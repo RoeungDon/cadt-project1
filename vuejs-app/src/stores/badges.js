@@ -9,6 +9,7 @@ export const useBadgeStore = defineStore('badges', {
     bell: 0,
     exchangeRate: null,
     reading: null,
+    invoice: null,
     loadedAt: 0,
   }),
 
@@ -23,6 +24,7 @@ export const useBadgeStore = defineStore('badges', {
         this.bell = d.bell
         this.exchangeRate = d.exchange_rate
         this.reading = d.reading
+        this.invoice = d.invoice?.date ? d.invoice : null
       } catch {
         // keep what we had
       }

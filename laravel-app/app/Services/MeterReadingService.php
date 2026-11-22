@@ -64,6 +64,9 @@ class MeterReadingService
                 'locked'          => (bool) $reading?->isLocked(),
                 'invoice_number'  => $reading ? $invoices->get($reading->id) : null,
                 'previous_source' => $previous['source'],  // "last_month" or "move_in"
+                // Moved in on or after the 28th: nothing to read this month, the first reading is next month
+                'after_reading_day' => $tenant->move_in_date !== null
+                    && $tenant->move_in_date->startOfDay()->gte(InvoiceService::readingDate($period)),
                 'previous_period' => $previous['period'],
                 'total_amount'    => $reading?->total_amount,
                 'notes'           => $reading?->notes,

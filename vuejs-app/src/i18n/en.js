@@ -20,6 +20,9 @@ export default {
   'menu.tenants': 'Tenants',
   'menu.utilities': 'Utilities',
   // Box at the bottom of the menu
+  'side.invoice': 'Invoices',
+  'side.invoiceLate': '{day} · {days} days late',
+  'side.invoicesMade': '{done} / {tenants} tenants invoiced for {month}',
   'side.rate': 'Exchange rate',
   'side.reading': 'Meter reading',
   'side.readingIn': '{day} · {days} days',

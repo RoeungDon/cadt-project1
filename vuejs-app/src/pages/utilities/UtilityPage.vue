@@ -136,6 +136,9 @@
                     <div class="small text-muted">
                       {{ row.previous_source === 'move_in' ? t('Old reading from move-in') : t('Old reading from {previous_period}', { previous_period: row.previous_period }) }}
                     </div>
+                    <div v-if="row.after_reading_day" class="small text-info">
+                      <i class="fas fa-info-circle mr-1"></i>{{ t('Moved in on or after the 28th: nothing to read this month') }}
+                    </div>
                   </td>
 
                   <td v-for="type in TYPES" :key="type.key" class="meter-cell">

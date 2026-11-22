@@ -13,6 +13,7 @@
               <div class="form-group col-sm-4">
                 <label>{{ t('Issue date') }}</label>
                 <input v-model="form.issue_date" type="date" class="form-control" required />
+                <small class="form-text text-muted">{{ t('Invoice day: {date}', { date: dayName(invoiceDay) }) }}</small>
               </div>
               <div class="form-group col-sm-4">
                 <label>{{ t('Due date') }}</label>
@@ -69,7 +70,8 @@
                     <td class="text-right text-nowrap font-weight-bold">{{ formatRiel(row.total_riel) }}</td>
                     <td>
                       <span v-if="row.status === 'ready'" class="badge badge-success">{{ t('Ready') }}</span>
-                      <span v-else-if="row.status === 'rent_only'" class="badge badge-warning" :title="t('Moved out without a final meter reading')">{{ t('Rent only') }}</span>
+                      <span v-else-if="row.status === 'rent_only'" class="badge badge-warning" :title="row.moved_out ? t('Moved out without a final meter reading') : t('Moved in on or after the 28th: nothing to read this month')">{{ t('Rent only') }}</span>
+                      <span v-else-if="row.status === 'nothing'" class="badge badge-light" :title="row.moved_out ? t('Moved out without a final meter reading') : t('Next month\'s rent was paid on moving in')">{{ t('Nothing to charge') }}</span>
                       <span v-else-if="row.status === 'invoiced'" class="badge badge-secondary">{{ row.invoice.invoice_number }}</span>
                       <span v-else class="badge badge-danger">{{ t('Reading needed') }}</span>
                     </td>
@@ -110,7 +112,7 @@ import { computed, reactive, ref, watch } from 'vue'
 import { invoiceService } from '@/services/invoiceService'
 import { formatRiel, formatUsd } from '@/utils/money'
 import { notifyError, notifySuccess } from '@/utils/swal'
-import { t } from '@/i18n'
+import { dayName, t } from '@/i18n'
 
 const props = defineProps({
   show: { type: Boolean, default: false },
@@ -128,6 +130,13 @@ const loadError = ref('')
 const saving = ref(false)
 const errors = ref({})
 const form = reactive({ issue_date: '', due_date: '' })
+
+// The 30th of the month, or the last day of February: "2026-11" → "2026-11-30", "2027-02" → "2027-02-28"
+const invoiceDay = computed(() => {
+  const [year, month] = props.period.split('-').map(Number)
+  const day = Math.min(30, new Date(year, month, 0).getDate())
+  return `${props.period}-${String(day).padStart(2, '0')}`
+})
 
 // "2026-11" → "2026-12"
 const rentPeriod = computed(() => {

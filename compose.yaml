@@ -4,10 +4,10 @@ services:
     container_name: cadt_mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set it in RTRroom/.env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set it in .env (cp .env.example .env)}
       MYSQL_DATABASE: rtr_room
       MYSQL_USER: rtr_user
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set it in RTRroom/.env}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set it in .env (cp .env.example .env)}
     ports:
       - "127.0.0.1:3307:3306"
     volumes:

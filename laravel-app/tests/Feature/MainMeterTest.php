@@ -16,7 +16,7 @@ class MainMeterTest extends TestCase
     private function waterMeter(): array
     {
         return $this->postJson('/api/main-meters', [
-            'utility' => 'water', 'name' => 'PPWSA main', 'account' => 'W801689',
+            'utility' => 'water', 'name' => 'PPWSA main', 'account' => 'DEMO-W-0001',
             'tier_mode' => 'progressive', 'extra_percent' => 10, 'monthly_fee' => 750,
         ])->assertCreated()->json('data');
     }
@@ -102,9 +102,9 @@ class MainMeterTest extends TestCase
         $ownerRoom = Room::where('room_number', 'A2')->first();
         $this->postJson('/api/tenants', ['full_name' => 'Sok', 'phone' => '012345678', 'room_id' => $ownerRoom->id, 'move_in_date' => '2026-11-01'])
             ->assertStatus(422)->assertJsonValidationErrors('room_id');
-        $electric = $this->postJson('/api/main-meters', ['utility' => 'electric', 'name' => 'EDC owner', 'account' => '54917410', 'tier_mode' => 'whole'])->json('data');
+        $electric = $this->postJson('/api/main-meters', ['utility' => 'electric', 'name' => 'EDC owner', 'account' => 'DEMO-EDC-0002', 'tier_mode' => 'whole'])->json('data');
         $this->putJson("/api/rooms/{$ownerRoom->id}", ['water_main_meter_id' => $electric['id']])->assertStatus(422);
-        $this->putJson("/api/rooms/{$ownerRoom->id}", ['electric_main_meter_id' => $electric['id'], 'edc_account' => '54917410'])->assertOk()
+        $this->putJson("/api/rooms/{$ownerRoom->id}", ['electric_main_meter_id' => $electric['id'], 'edc_account' => 'DEMO-EDC-0002'])->assertOk()
             ->assertJsonPath('data.electric_main_meter_id', $electric['id']);
 
         // A meter with readings cannot be deleted

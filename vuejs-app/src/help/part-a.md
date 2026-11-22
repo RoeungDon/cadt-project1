@@ -57,9 +57,17 @@ RTRroom ជាគណនីផ្ទាល់ខ្លួនរបស់អ្ន
 
 **វិក្កយបត្រប្រចាំខែ**
 
-- ម្ចាស់ផ្ទះអានកុងទ័រនៅថ្ងៃទី **២៨** ហើយចេញវិក្កយបត្រនៅចុងខែ។
-- វិក្កយបត្រមួយ = ថ្លៃទឹក ភ្លើង នៃ**ខែនេះ** + ថ្លៃផ្ទះនៃ**ខែក្រោយ** (បង់មុន)។ ឧ. វិក្កយបត្រខែវិច្ឆិកា = ទឹកភ្លើងវិច្ឆិកា + ថ្លៃផ្ទះធ្នូ។
-- ស្លាកស្ថានភាព៖ **មិនទាន់បានបង់** · **បានបង់** · **ហួសកំណត់**។
+- ម្ចាស់ផ្ទះអានកុងទ័រនៅថ្ងៃទី **២៨** ហើយចេញវិក្កយបត្រនៅថ្ងៃទី **៣០** (ខែកុម្ភៈ៖ ថ្ងៃចុងខែ)។
+- វិក្កយបត្រមួយ = ថ្លៃទឹក ភ្លើង នៃ**ខែនេះ** + ថ្លៃផ្ទះនៃ**ខែក្រោយ** (បង់មុន)។ ឧ. វិក្កយបត្រខែវិច្ឆិកា = ទឹកភ្លើងវិច្ឆិកា + ថ្លៃផ្ទះធ្នូ។ ចំណងជើងវិក្កយបត្របង្ហាញខែនៃថ្លៃផ្ទះ (ធ្នូ)។
+- ស្លាកស្ថានភាព៖ **មិនទាន់បង់** · **បង់ខ្លះ** · **បានបង់** · **ហួសកំណត់**។
+
+**ខែដំបូង**
+
+| ថ្ងៃចូលស្នាក់ | បង់នៅថ្ងៃចូល | វិក្កយបត្រដំបូង (ថ្ងៃ ៣០) |
+| --- | --- | --- |
+| មុនថ្ងៃ ២៨ (ឧ. ១៥) | ប្រាក់កក់ + ថ្លៃផ្ទះនៃថ្ងៃនៅសល់ក្នុងខែ | ថ្លៃផ្ទះខែក្រោយ + ទឹកភ្លើងពីថ្ងៃចូលដល់ថ្ងៃ ២៨ |
+| ថ្ងៃ ២៨ ឬក្រោយ | ប្រាក់កក់ + ថ្លៃផ្ទះនៃថ្ងៃនៅសល់ក្នុងខែ | ថ្លៃផ្ទះខែក្រោយតែប៉ុណ្ណោះ។ ទឹកភ្លើងចាប់គិតនៅវិក្កយបត្រខែបន្ទាប់ |
+| ថ្ងៃទី ១ | ប្រាក់កក់ + ថ្លៃផ្ទះខែនោះពេញ | ថ្ងៃ ៣០ នៃខែនោះ |
 
 **ទឹកភ្លើង**
 
@@ -67,7 +75,7 @@ RTRroom ជាគណនីផ្ទាល់ខ្លួនរបស់អ្ន
 - បន្ទប់ដែលមាននាឡិកាភ្លើង EDC ផ្ទាល់ បង្ហាញ **បង់ EDC ផ្ទាល់**។ ថ្លៃភ្លើងនោះមិនចូលក្នុងវិក្កយបត្រ RTRroom ទេ។
 - អត្រាថ្លៃទឹកភ្លើងមានក្នុងឧបសម្ព័ន្ធ ១ នៃកិច្ចសន្យារបស់អ្នក។
 
-*English: The home page shows what you owe; green means all paid. The owner reads the meters on the 28th and sends one bill at the end of the month: this month's water and electricity plus next month's rent. Check the meter numbers against the meters in your room and tell the owner before paying if they are wrong.*
+*English: The home page shows what you owe; green means all paid. The owner reads the meters on the 28th and makes one bill on the 30th (the last day of February): this month's water and electricity plus next month's rent. If you move in on the 28th or later, your first bill has rent only. Check the meter numbers against the meters in your room and tell the owner before paying if they are wrong.*
 
 ## ក.3 បង់តាម ABA KHQR និងផ្ញើរូបបង្កាន់ដៃ
 
@@ -109,18 +117,18 @@ RTRroom ជាគណនីផ្ទាល់ខ្លួនរបស់អ្ន
 2. សរសេរ **អ្វីដែលខូច** (ឧ. ក្បាលរ៉ូប៊ីណេលេចទឹក) និងព័ត៌មានបន្ថែម បើចាំបាច់។
 3. ថតរូបកន្លែងខូច (មិនចាំបាច់ តែជួយឱ្យលឿន)។
 4. ធីក **បន្ទាន់** បើទឹកលេចខ្លាំង ភ្លើងឆ្លង ឬសោខូច។
-5. ចុច **ផ្ញើសំណើ**។ សំណើនឹងបង្ហាញ **រង់ចាំម្ចាស់ផ្ទះ**។ មុនម្ចាស់ផ្ទះចាប់ផ្តើម អ្នកអាច **បោះបង់សំណើ** បាន។
+5. ចុច **ផ្ញើសំណើ**។ សំណើនឹងបង្ហាញ **បានផ្ញើ** → **កំពុងជួសជុល** → **រួចរាល់**។ មុនម្ចាស់ផ្ទះចាប់ផ្តើម អ្នកអាច **បោះបង់សំណើ** បាន។
 
 **នរណាចេញថ្លៃ?**
 
 - ជួសជុលធំៗ (បណ្តាញទឹក ភ្លើងមេ ដំបូល) → ជាធម្មតា **ម្ចាស់ផ្ទះចេញថ្លៃ**។
 - ជួសជុលតូចតាច (អំពូល ក្បាលរ៉ូប៊ីណេ) ឬការខូចដោយអ្នកជួល → អ្នកជួលចេញ តាមកិច្ចសន្យា ប្រការ ៦ និង ៧។
 - បើអ្នកត្រូវចេញថ្លៃ ម្ចាស់ផ្ទះនឹងដាក់តម្លៃ (សេវាជួសជុល + សម្ភារៈ)។ អ្នកនឹងឃើញ **សូមយល់ព្រមលើតម្លៃនេះ មុនពេលជួសជុល** ហើយជ្រើស **យល់ព្រម** ឬ **មិនយល់ព្រម**។ ម្ចាស់ផ្ទះមិនជួសជុលមុនអ្នកយល់ព្រមទេ។
-- ថ្លៃដែលអ្នកយល់ព្រម នឹងចូលក្នុងវិក្កយបត្រខែបន្ទាប់។
+- ពេលដាក់តម្លៃ ម្ចាស់ផ្ទះជ្រើសរបៀបបង់មួយ៖ **បង់មុនពេលជួសជុល** (វិក្កយបត្រជួសជុលចេញភ្លាមពេលអ្នកយល់ព្រម) · **បង់ភ្លាមពេលជួសជុលរួច** (វិក្កយបត្រជួសជុលចេញពេលរួច) · **បូកក្នុងវិក្កយបត្រខែបន្ទាប់**។
 
 ពេលជួសជុលរួច សំណើបង្ហាញ **រួចរាល់** ជាមួយរូប **មុនជួសជុល** និង **ក្រោយជួសជុល** និងវិក្កយបត្រទិញសម្ភារៈ បើមាន។
 
-*English: Tab "Repairs" → "Ask for a repair": say what is broken, add a photo, tick "Urgent" for leaks, sparks or a broken lock. In an emergency, phone the owner first. If you must pay, the owner shows the price first; nothing is done until you agree, and the amount goes on next month's bill.*
+*English: Tab "Repairs" → "Ask for a repair": say what is broken, add a photo, tick "Urgent" for leaks, sparks or a broken lock. In an emergency, phone the owner first. If you must pay, the owner shows the price first; nothing is done until you agree. You pay it before the work, when it is done, or on next month's bill, as the owner chose.*
 
 ## ក.5 កិច្ចសន្យា ជូនដំណឹងចាកចេញ និងប្រាក់កក់
 

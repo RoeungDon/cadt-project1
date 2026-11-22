@@ -53,6 +53,13 @@
           <div :style="{ width: `${readingPercent}%` }"></div>
         </div>
         <div v-if="badges.reading" class="rtr-widget-foot">{{ t('side.roomsRead', { done: badges.reading.done, rooms: badges.reading.rooms, month: monthName(badges.reading.period) }) }}</div>
+        <div v-if="badges.invoice" class="rtr-widget-row mt-2">
+          <span>{{ t('side.invoice') }}</span>
+          <b :class="{ 'text-danger': badges.invoice.late }">{{ invoiceText }}</b>
+        </div>
+        <div v-if="badges.invoice" class="rtr-widget-foot" :class="{ 'text-danger': badges.invoice.late }">
+          {{ t('side.invoicesMade', { done: badges.invoice.done, tenants: badges.invoice.tenants, month: monthName(badges.invoice.period) }) }}
+        </div>
       </div>
     </div>
   </aside>
@@ -120,6 +127,13 @@ onUnmounted(() => clearInterval(timer))
 const readingText = computed(() => {
   const r = badges.reading
   const day = `${Number(r.date.slice(8, 10))} ${monthName(r.date, { year: false, short: lang.value === 'en' })}`
+  return r.days_left === 0 ? t('side.readingToday', { day }) : t('side.readingIn', { day, days: r.days_left })
+})
+// The 30th (the last day of February): today, in N days, or N days late when the month is not fully invoiced
+const invoiceText = computed(() => {
+  const r = badges.invoice
+  const day = `${Number(r.date.slice(8, 10))} ${monthName(r.date, { year: false, short: lang.value === 'en' })}`
+  if (r.late) return t('side.invoiceLate', { day, days: r.days_late })
   return r.days_left === 0 ? t('side.readingToday', { day }) : t('side.readingIn', { day, days: r.days_left })
 })
 const readingPercent = computed(() => {

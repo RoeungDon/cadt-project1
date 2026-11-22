@@ -20,13 +20,34 @@ class InvoiceService
 {
     private const UTILITIES = ['electric', 'water'];
 
+    // Meters are read on the 28th, the same day EDC reads its meters
+    public const READING_DAY = 28;
+
+    // Invoices are made on the 30th, or on the last day of a shorter month (February)
+    public const INVOICE_DAY = 30;
+
+    // 2026-11 -> 2026-11-28
+    public static function readingDate(string $period): CarbonImmutable
+    {
+        return CarbonImmutable::createFromFormat('!Y-m', $period)->day(self::READING_DAY);
+    }
+
+    // 2026-11 -> 2026-11-30, 2027-02 -> 2027-02-28
+    public static function invoiceDate(string $period): CarbonImmutable
+    {
+        $first = CarbonImmutable::createFromFormat('!Y-m', $period);
+
+        return $first->day(min(self::INVOICE_DAY, $first->daysInMonth));
+    }
+
     /**
      * An invoice has the water and electricity of $period and the rent of the NEXT month (paid in advance).
      * Lists every tenant who was in a room during either month, including tenants who have moved out,
      * with what would be charged and whether an invoice can be made.
      *
      * status: ready           has a meter reading for $period
-     *         rent_only       no utilities to charge: moved in after $period, or moved out without a final reading
+     *         rent_only       no utilities to charge: moved in on or after the reading day (28th) of $period,
+     *                         or moved out without a final reading
      *         missing_reading was in the room during $period, the reading must be saved first
      *         invoiced        already has a valid invoice
      * Tenants with nothing to charge (moved out, no reading, no rent for next month) are left out.
@@ -67,7 +88,7 @@ class InvoiceService
                 'move_out_date' => $tenant->move_out_date?->toDateString(),
                 'moved_out'     => $tenant->status === 'moved_out',
                 'rent_period'   => $this->rentPeriod($period),
-                'status'        => $this->previewStatus($tenant, $reading, $invoice, $last, $rent['rent_usd']),
+                'status'        => $this->previewStatus($tenant, $reading, $invoice, self::readingDate($period), $rent['rent_usd']),
                 'occupied_days' => $rent['occupied_days'],
                 'days_in_month' => $rent['days_in_month'],
                 'rent_usd'      => $rent['rent_usd'],
@@ -457,7 +478,7 @@ class InvoiceService
         ];
     }
 
-    private function previewStatus(Tenant $tenant, ?MeterReading $reading, ?Invoice $invoice, CarbonImmutable $utilityMonthEnd, float $rentUsd): string
+    private function previewStatus(Tenant $tenant, ?MeterReading $reading, ?Invoice $invoice, CarbonImmutable $readingDate, float $rentUsd): string
     {
         if ($invoice) {
             return 'invoiced';
@@ -471,8 +492,9 @@ class InvoiceService
             return $rentUsd > 0 ? 'rent_only' : 'nothing';
         }
 
-        // Moved in after the utility month: only next month's rent can be charged
-        $movedInLater = $tenant->move_in_date && $tenant->move_in_date->gt($utilityMonthEnd);
+        // Moved in on or after the reading day: the start meters are this month's reading,
+        // so only next month's rent is charged. The first usage is on next month's reading.
+        $movedInLater = $tenant->move_in_date && $tenant->move_in_date->startOfDay()->gte($readingDate);
 
         if (! $movedInLater) {
             return 'missing_reading';

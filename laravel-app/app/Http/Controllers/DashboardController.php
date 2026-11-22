@@ -7,9 +7,10 @@ use App\Models\Invoice;
 use App\Models\MaintenanceRequest;
 use App\Models\MeterReading;
 use App\Models\PaymentProof;
-use App\Models\Room;
+use App\Models\Tenant;
 use App\Models\Setting;
 use App\Services\DashboardService;
+use App\Services\InvoiceService;
 use Carbon\CarbonImmutable;
 use App\Services\ExpenseService;
 use App\Services\PaymentScoreService;
@@ -19,7 +20,10 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     // Meters are read on the same day as EDC reads its meters
-    public const READING_DAY = 28;
+    public const READING_DAY = InvoiceService::READING_DAY;
+
+    // How many days after the invoice day a month that is not fully invoiced is still shown as late
+    public const LATE_DAYS = 10;
 
     // GET /api/dashboard/badges   small counts for the menu and the bell, and the box at the bottom of the menu
     public function badges(Request $request)
@@ -27,6 +31,7 @@ class DashboardController extends Controller
         $today = CarbonImmutable::today();
         $reading = $today->day > self::READING_DAY ? $today->addMonthNoOverflow()->day(self::READING_DAY) : $today->day(self::READING_DAY);
         $open = Invoice::valid()->whereIn('status', ['unpaid', 'partial']);
+        $invoice = $this->nextInvoices($today);
 
         $counts = [
             'invoices_unpaid'  => (clone $open)->count(),
@@ -43,16 +48,55 @@ class DashboardController extends Controller
 
         return response()->json(['data' => [
             'counts'        => $counts,
-            'bell'          => $counts['invoices_overdue'] + $counts['proofs_pending'] + $counts['requests_open'] + $counts['edc_to_check'] + $counts['expenses_due'],
+            'bell'          => $counts['invoices_overdue'] + $counts['proofs_pending'] + $counts['requests_open'] + $counts['edc_to_check'] + $counts['expenses_due']
+                + ($invoice['late'] ? 1 : 0),
             'exchange_rate' => (int) Setting::getValue('exchange_rate'),
             'reading'       => [
                 'date'      => $reading->toDateString(),
                 'days_left' => (int) $today->diffInDays($reading),
                 'period'    => $reading->format('Y-m'),
                 'done'      => MeterReading::where('period', $reading->format('Y-m'))->count(),
-                'rooms'     => Room::where('status', 'occupied')->count(),
+                // Tenants who moved in on or after the reading day have nothing to read yet
+                'rooms'     => Tenant::where('status', 'active')->whereNotNull('room_id')
+                    ->where(fn ($q) => $q->whereNull('move_in_date')->orWhereDate('move_in_date', '<', $reading))->count(),
             ],
+            'invoice'       => $invoice,
         ]]);
+    }
+
+    /**
+     * The next invoice day (the 30th, or the last day of February) and how many tenants have their invoice.
+     * A month that is not fully invoiced stays on the box as late for LATE_DAYS days.
+     */
+    private function nextInvoices(CarbonImmutable $today): array
+    {
+        $periods = [$today->startOfMonth()->subMonth()->format('Y-m'), $today->format('Y-m'), $today->startOfMonth()->addMonth()->format('Y-m')];
+
+        foreach ($periods as $period) {
+            $date = InvoiceService::invoiceDate($period);
+            $done = Invoice::valid()->where('kind', 'monthly')->where('period', $period)->count();
+            $tenants = Tenant::where('status', 'active')->whereNotNull('room_id')
+                ->where(fn ($q) => $q->whereNull('move_in_date')->orWhereDate('move_in_date', '<=', $date))->count();
+            $finished = $done >= $tenants;
+
+            if ($today->gt($date) && ($finished || $today->gt($date->addDays(self::LATE_DAYS)))) {
+                continue;
+            }
+
+            $late = $today->gt($date);
+
+            return [
+                'date'      => $date->toDateString(),
+                'period'    => $period,
+                'days_left' => $late ? 0 : (int) $today->diffInDays($date),
+                'days_late' => $late ? (int) $date->diffInDays($today) : 0,
+                'late'      => $late,
+                'done'      => $done,
+                'tenants'   => $tenants,
+            ];
+        }
+
+        return [];
     }
 
     // GET /api/dashboard/overview?period=2026-10   cards and charts for one invoice month (default: the newest)
